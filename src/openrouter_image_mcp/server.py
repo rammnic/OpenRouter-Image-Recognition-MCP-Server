@@ -12,7 +12,9 @@ from mcp.server.stdio import stdio_server
 from mcp.types import Tool, TextContent
 from pydantic import AnyUrl
 
-load_dotenv()
+# Load .env from package directory (not from current working directory)
+package_dir = Path(__file__).parent.parent.parent
+load_dotenv(package_dir / ".env")
 
 app = Server("openrouter-image-mcp")
 

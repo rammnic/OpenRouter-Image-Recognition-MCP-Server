@@ -65,27 +65,29 @@ pip install -e .
 
 ### Шаг 2: Настройка
 
-1. Получите API ключ на https://openrouter.ai/keys
-2. Откройте настройки Cline (MCP Settings)
-3. Добавьте конфигурацию:
+1. Создайте файл `.env` на основе `.env.example` и добавьте ваш API ключ:
+   ```bash
+   cp .env.example .env
+   # Отредактируйте .env и добавьте OPENROUTER_API_KEY
+   ```
+
+2. Откройте настройки Cline (MCP Settings) и добавьте конфигурацию:
 
 ```json
 {
   "mcpServers": {
     "openrouter-image": {
       "command": "полный/путь/к/проекту/.venv/Scripts/python.exe",
-      "args": ["-m", "openrouter_image_mcp.server"],
-      "env": {
-        "OPENROUTER_API_KEY": "ваш_api_ключ"
-      }
+      "args": ["-m", "openrouter_image_mcp.server"]
     }
   }
 }
 ```
 
 **Важно:** Укажите полный путь к Python в виртуальном окружении. Например:
-- `C:\path\mcp_view\.venv\Scripts\python.exe`
-- Или используйте относительный путь от папки проекта
+- `C:\path\to\project\.venv\Scripts\python.exe`
+
+API ключ автоматически загрузится из `.env` файла.
 
 ## Использование
 
