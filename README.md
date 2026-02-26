@@ -50,47 +50,42 @@ OPENROUTER_API_KEY=your_api_key_here
 OPENROUTER_MODEL=openai/gpt-4o
 ```
 
-### Доступные модели
-
-- `openai/gpt-4o` - по умолчанию, отличное качество
-- `openai/gpt-4o-mini` - быстрее и дешевле
-- `anthropic/claude-3.5-sonnet` - отличное vision
-- `google/gemini-2.0-flash-exp` - очень быстрая
-- `meta-llama/llama-3.2-90b-vision-instruct`
-
-Полный список моделей: https://openrouter.ai/docs/models
+Полный список доступных моделей: https://openrouter.ai/docs/models
 
 ## Подключение к Cline
 
-Добавьте в настройки Cline (MCP Settings):
+### Шаг 1: Установка
+
+```bash
+cd путь/к/проекту
+python -m venv .venv
+.venv\Scripts\activate
+pip install -e .
+```
+
+### Шаг 2: Настройка
+
+1. Получите API ключ на https://openrouter.ai/keys
+2. Откройте настройки Cline (MCP Settings)
+3. Добавьте конфигурацию:
 
 ```json
 {
   "mcpServers": {
     "openrouter-image": {
-      "command": "python",
+      "command": "полный/путь/к/проекту/.venv/Scripts/python.exe",
       "args": ["-m", "openrouter_image_mcp.server"],
       "env": {
-        "OPENROUTER_API_KEY": "your_api_key"
+        "OPENROUTER_API_KEY": "ваш_api_ключ"
       }
     }
   }
 }
 ```
 
-Или с указанием пути к проекту:
-
-```json
-{
-  "mcpServers": {
-    "openrouter-image": {
-      "command": "python",
-      "args": ["-m", "openrouter_image_mcp.server"],
-      "cwd": "путь/к/проекту"
-    }
-  }
-}
-```
+**Важно:** Укажите полный путь к Python в виртуальном окружении. Например:
+- `C:\path\mcp_view\.venv\Scripts\python.exe`
+- Или используйте относительный путь от папки проекта
 
 ## Использование
 
